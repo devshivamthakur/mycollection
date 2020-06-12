@@ -1,6 +1,10 @@
+
 package com.company;
 
 import javax.swing.*;
+
+//import sun.font.TextLabel;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
@@ -16,7 +20,9 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
     static String sb1 = "", sb2 = "", sb3 = "", sb4 = "", sb5 = "", sb6 = "", sb7 = "", sb8 = "", sb9 = ""; // for save repeat labe
     Label lb1, lb, lc, lc1, lc2;
     TextField tf1, tf2; // for name
+    JLabel jl1;
     Button b1,b2;
+    JButton nxt;
     Thread t=null;
     int h=0,m=0,s=0;
     String  ts="";
@@ -25,6 +31,8 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
     static int player = 1;
     Font f=new Font("",Font.BOLD,22);
     Font fon=new Font("",Font.BOLD,15);
+    JFrame jff;
+    JPanel jfp1;
     JFrame f1 = new JFrame("enter first");// login frame
     JFrame f2 = new JFrame("tic tac toi"); // main game frame
     Image icon=Toolkit.getDefaultToolkit().getImage("D:\\New folder\\download.JPG");
@@ -37,6 +45,7 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
         /* digital
       watch
         area*/
+         
         f1.setIconImage(icon);
         f2.setIconImage(icon);
         f3.setIconImage(icon);
@@ -47,6 +56,8 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
         /*digital watch component
 
          */
+        jl1=new JLabel();
+       jl1.setBounds(10,300,250,60);
         tf1 = new TextField(30);
         tf1.setBounds(150, 70, 80, 30);   //f1
         tf1.setFont(fon);
@@ -59,14 +70,14 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
         lb = new Label(" player 2 name");
         lb.setFont(fon);
         b1 = new Button("play");
-        l1 = new Button(" ");
-        l2 = new Button("  ");
-        l3 = new Button("  ");
+        l1 = new Button("");
+        l2 = new Button("");
+        l3 = new Button("");
         l4 = new Button("");
-        l5 = new Button("   ");
-        l6 = new Button("     ");
-        l7 = new Button("  ");
-        l8 = new Button(" ");
+        l5 = new Button("");
+        l6 = new Button("");
+        l7 = new Button("");
+        l8 = new Button("");
         l9 = new Button("");
         lc1 = new Label("player ");
         lc1.setBounds(30, 150, 70, 40);
@@ -89,10 +100,13 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
         l7.setBounds(30, 120, 40, 40);
         l8.setBounds(70, 120, 40, 40);
         l9.setBounds(110, 120, 40, 40);
+       nxt=new JButton("Next");
+      nxt.setBounds(130,40,70,40);
         /*
         set fonts in button
-         👇
+         ðŸ‘‡
          */
+        jl1.setFont(f);
         l1.setFont(f);
         l2.setFont(f);
         l3.setFont(f);
@@ -103,8 +117,9 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
         l8.setFont(f);
         l9.setFont(f);
 
-        /*   set labal color  👇
+        /*   set labal color  ðŸ‘‡
          * */
+        jl1.setForeground(Color.BLACK);
         l1.setForeground(Color.RED);
         l2.setForeground(Color.RED);
         l3.setForeground(Color.RED);
@@ -117,7 +132,7 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
         /**
          *
          */
-        /*set action listener with button  👇
+        /*set action listener with button  ðŸ‘‡
          * */
         l1.addActionListener(this);
         l2.addActionListener(this);
@@ -129,8 +144,9 @@ public class tic extends WindowAdapter implements ActionListener,Runnable  {
         l8.addActionListener(this);
         l9.addActionListener(this);
         b1.addActionListener(this);
+        nxt.addActionListener(this);
 /*
-add component in frame   👇
+add component in frame   ðŸ‘‡
  */
         p2.add(l1);
         p2.add(l2);
@@ -142,7 +158,7 @@ add component in frame   👇
         p2.add(l8);
         p2.add(l9);
         f2.add(p2);
-
+        p1.add(jl1);
         p1.add(b2);
 
         f2.add(lc1);
@@ -153,17 +169,20 @@ add component in frame   👇
         p1.add(tf2);
         p1.add(b1);
         p1.add(lc);
-        f1.add(p1);
+      
         //  f1.add(b2);
         p1.setBackground(Color.magenta);
         p2.setBackground(Color.BLUE);
         p2.setForeground(Color.BLACK);
-        p1.setSize(300, 400);
+         p1.setSize(300, 400);
         p1.setLayout(null);
         p1.setVisible(true);
-        f1.setSize(300, 400);
+          f1.add(p1);
+         f1.setSize(300, 400);
         f1.setLayout(null);
         f1.setVisible(true);
+       
+       
 
         p2.setSize(200, 300);
         p2.setLayout(null);
@@ -191,31 +210,32 @@ add component in frame   👇
             s22=s2;
             s22=s22+s11;
         }
-        f2.setVisible(false);
-        f1.setVisible(false);
-        p2.setVisible(false);
-        p1.setVisible(false);
-        JFrame f=new JFrame("");
-        JPanel p=new JPanel();
-        f.setIconImage(icon);
-        f.setSize(400,200);
-        p.setSize(400,200);
+                 jff=new JFrame("");
+       jfp1 =new JPanel();
+        jff.setIconImage(icon);
+        jff.setSize(400,200);
+        jfp1.setSize(400,200);
         Label l1=new Label(s22);
         l1.setAlignment(Label.CENTER);
         l1.setBackground(Color.green);
         l1.setForeground(Color.BLACK);
         l1.setBounds(75,80,200,40);
-        p.add(l1);
+       jfp1.add(l1);
         b2.setBounds(130,110,100,40);
-        p.add(b2);
-        f.add(p);
-        p.setBackground(Color.white);
-        p.setLayout(null);
-        p.setVisible(true);
-        f.setLayout(null);
-        f.setVisible(true);
-        f.addWindowListener(this);
-    }
+        jff.add(jfp1);
+        jfp1.add(nxt);
+       jfp1.setBackground(Color.white);
+        jfp1.setLayout(null);
+        jfp1.setVisible(true);
+        jff.setLayout(null);
+        jff.setVisible(true);
+         //Thread.sleep(1000);
+        f2.setVisible(false);
+       // f1.setVisible(false);
+        p2.setVisible(false);
+       // p1.setVisible(false)
+                  
+         }
 
 
     public void draw()
@@ -224,25 +244,27 @@ add component in frame   👇
 
         f2.setVisible(false);
         f1.setVisible(false);
-        JFrame f=new JFrame("");
-        JPanel p=new JPanel();
-        f.setIconImage(icon);
-        f.setSize(400,200);
-        p.setSize(400,200);
+        jff=new JFrame();
+      jfp1=new JPanel();
+        jff.setIconImage(icon);
+        jff.setSize(400,200);
+       jfp1.setSize(400,200);
         Label l1=new Label(s11);
         l1.setAlignment(Label.CENTER);
         l1.setBackground(Color.ORANGE);
         l1.setForeground(Color.BLACK);
         l1.setBounds(75,80,200,40);
-        p.add(l1);
+       jfp1.add(l1);
         b2.setBounds(130,110,100,40);
-        p.add(b2);
-        f.add(p);
-        p.setBackground(Color.white);
-        p.setLayout(null);
-        p.setVisible(true);
-        f.setLayout(null);
-        f.setVisible(true);
+       jfp1.add(b2);
+        jfp1.add(nxt);
+        jff.add(jfp1);
+       jfp1.setBackground(Color.white);
+        jfp1.setLayout(null);
+        jfp1.setVisible(true);
+        jff.setLayout(null);
+        jff.setVisible(true);
+       
     }
 
     public static void main(String[] args) {
@@ -258,10 +280,11 @@ add component in frame   👇
         if (e.getSource() == b1) {
             try {
                 if (s1.isEmpty() || s2.isEmpty()) {
-                    JOptionPane.showMessageDialog(p1,"please enter name first");
+                 throw  new Exception("please enter name first");
                 } else if (s1.equals(s2)) {
-                    JOptionPane.showMessageDialog(p1,"enter different name");
+                    throw new Exception("enter different name");
                 }
+                else{
                 f1.setVisible(false);
                 p1.setVisible(false);
                 sleep(1000);
@@ -269,8 +292,9 @@ add component in frame   👇
                 p2.setVisible(true);
                 b2.setBounds(40,180,100,40);// show current time
                 p2.add(b2);
+                }
             } catch (Exception e1) {
-                lc.setText(e1.getMessage());
+                jl1.setText(e1.getMessage());
             }
         }
 
@@ -411,35 +435,35 @@ add component in frame   👇
         sl8 = l8.getLabel();
         sl9 = l9.getLabel();
 
-        if (sl1 == sl2 && sl2 == sl3)
+        if (sl1 == sl2 && sl2 == sl3&&!sl1.isEmpty()&&!sl2.isEmpty()&&!sl3.isEmpty())
         {
-            f2.setVisible(false);
+           
             win();
 
-        } else if (sl4 == sl5 && sl5 == sl6)
-        {
-            win();
-
-        } else if (sl7 == sl8 && sl8 == sl9)
+        } else if (sl4 == sl5 && sl5 == sl6&&!sl4.isEmpty()&&!sl5.isEmpty()&&!sl6.isEmpty())
         {
             win();
 
-        } else if (sl1 == sl4 && sl4 == sl7)
+        } else if (sl7 == sl8 && sl8 == sl9&&!sl7.isEmpty()&&!sl8.isEmpty()&&!sl9.isEmpty())
         {
             win();
 
-        } else if (sl2 == sl5 && sl5 == sl8)
-        {
-            win();
-        } else if (sl3 == sl6 && sl6 == sl9)
+        } else if (sl1 == sl4 && sl4 == sl7&&!sl1.isEmpty()&&!sl4.isEmpty()&&!sl7.isEmpty())
         {
             win();
 
-        } else if (sl1 == sl5 && sl5 == sl9)
+        } else if (sl2 == sl5 && sl5 == sl8&&!sl2.isEmpty()&&!sl5.isEmpty()&&!sl8.isEmpty())
+        {
+            win();
+        } else if (sl3 == sl6 && sl6 == sl9&&!sl3.isEmpty()&&!sl6.isEmpty()&&!sl9.isEmpty())
         {
             win();
 
-        } else if (sl3 == sl5 && sl5 == sl7)
+        } else if (sl1 == sl5 && sl5 == sl9&&!sl1.isEmpty()&&!sl5.isEmpty()&&!sl9.isEmpty())
+        {
+            win();
+
+        } else if (sl3 == sl5 && sl5 == sl7&&!sl3.isEmpty()&&!sl5.isEmpty()&&!sl7.isEmpty())
         {
             win();
 
@@ -450,7 +474,53 @@ add component in frame   👇
         }
         x=player;
         lc2.setText(s3);
-
+       if(e.getSource()==nxt)
+        {
+        System.out.println("enter in nxtbtn");
+     jfp1.setVisible(false);
+     jff.setVisible(false);
+     jff.setEnabled(false);
+     System.out.println("close in nxtbtn");
+     f3.setVisible(false);
+     p2.setVisible(false);
+     p3.setVisible(false);
+     f2.setVisible(false);
+     l1.setLabel("");
+     l2.setLabel("");
+     l3.setLabel("");
+     l4.setLabel(""); 
+     l5.setLabel("");
+     l6.setLabel("");
+              l7.setLabel("");
+               l8.setLabel("");
+               l9.setLabel("");
+              sl1="";
+              sl2 = "";
+              sl3 = "";
+              sl4 = "";
+              sl5 = "";
+              sl6 = "";
+              sl7 = "";
+              sl8 = "";
+              sl9 = "" ;
+              sb1 = "";
+              sb2 = "";
+              sb3 = "";
+              sb4 = "" ;
+              sb5 = "";
+              sb6 = "";
+              sb7 = "";
+              sb8 = "";
+              sb9 = "";
+               s1 = "";
+               s2 = "";
+               s3 = "1";
+               tf1.setText("");
+               tf2.setText("");
+               f1.setVisible(true);
+               p1.setVisible(true);
+        }
+       
 
 
     }
